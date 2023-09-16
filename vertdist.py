@@ -6,19 +6,24 @@ from dms_to_dd import dms_to_dd
 """script to compute the vertical distance of a foresight 
 """
 
-#user_input_za = ()
-#user_input_sd = ()
+
+# get the users input
 
 
+user_input = input("Enter Zenith Angle, Slope Distance, Point Elevation, Instrument Height, Rod Height: ")
 
 
-user_input = input("Enter Zenith Angle, Slope Distance: ")
 print("You entered {}", format(user_input))
-angle = user_input.split(',')[0]
-dist = user_input.split(',')[1]
+value = user_input.split(',')
+angle = value[0]
+dist = value[1]
+p1z = float(value[2])
+ih = float(value[3])
+rh = float(value[4])
+
 
 vd = np.cos(dms_to_dd(angle) * np.pi / 180) * float(dist)
-
-print(vd)
+p2z = p1z + ih + vd - rh
+print(p2z)
 
 
